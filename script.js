@@ -115,7 +115,7 @@ if (educationSection) {
       threshold: 0.2,
     }
   );
-  educationObserver.observe(educationSection);
+  experienceObserver.observe(educationSection);
 }
 // Intersection Observer untuk Animasi Scroll pada Resume Section
 const resumeSection = document.getElementById("resume");
@@ -156,7 +156,6 @@ if (servicesSection) {
 const testimonialsSection = document.getElementById("testimonials");
 // Pastikan testimonialsSection tidak null sebelum meng-observe
 if (testimonialsSection) {
-  // <--- TAMBAHKAN PENGECEKAN INI
   const testimonialsObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -173,10 +172,9 @@ if (testimonialsSection) {
   testimonialsObserver.observe(testimonialsSection);
 }
 
-// Intersection Observer untuk Animasi Scroll pada Featured Gallery Section <--- BAGIAN BARU
+// Intersection Observer untuk Animasi Scroll pada Featured Gallery Section
 const featuredGallerySection = document.getElementById("featured-gallery");
 if (featuredGallerySection) {
-  // Selalu baik untuk memeriksa apakah elemen ada
   const featuredGalleryObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -187,13 +185,13 @@ if (featuredGallerySection) {
       });
     },
     {
-      threshold: 0.15, // Anda bisa sesuaikan threshold jika perlu
+      threshold: 0.15,
     }
   );
   featuredGalleryObserver.observe(featuredGallerySection);
 }
 
-// Intersection Observer untuk Animasi Scroll pada Client Logos Section <--- BAGIAN BARU
+// Intersection Observer untuk Animasi Scroll pada Client Logos Section
 const clientLogosSection = document.getElementById("client-logos");
 if (clientLogosSection) {
   const clientLogosObserver = new IntersectionObserver(
@@ -206,13 +204,13 @@ if (clientLogosSection) {
       });
     },
     {
-      threshold: 0.15, // Picu animasi saat 15% section terlihat
+      threshold: 0.15,
     }
   );
   clientLogosObserver.observe(clientLogosSection);
 }
 
-// Intersection Observer untuk Animasi Scroll pada New Services Showcase Section <--- BAGIAN BARU
+// Intersection Observer untuk Animasi Scroll pada New Services Showcase Section
 const servicesShowcaseSection = document.getElementById("services-showcase");
 if (servicesShowcaseSection) {
   const servicesShowcaseObserver = new IntersectionObserver(
@@ -225,7 +223,7 @@ if (servicesShowcaseSection) {
       });
     },
     {
-      threshold: 0.1, // Picu animasi saat 10% section terlihat
+      threshold: 0.1,
     }
   );
   servicesShowcaseObserver.observe(servicesShowcaseSection);
@@ -243,13 +241,13 @@ if (myJourneySection) {
       });
     },
     {
-      threshold: 0.1, // Picu animasi saat 10% section terlihat
+      threshold: 0.1,
     }
   );
   myJourneyObserver.observe(myJourneySection);
 }
 
-// Intersection Observer untuk Animasi Scroll pada Blog Section <--- BAGIAN BARU
+// Intersection Observer untuk Animasi Scroll pada Blog Section
 const blogSection = document.getElementById("blog");
 if (blogSection) {
   const blogObserver = new IntersectionObserver(
@@ -262,7 +260,7 @@ if (blogSection) {
       });
     },
     {
-      threshold: 0.1, // Picu animasi saat 10% section terlihat
+      threshold: 0.1,
     }
   );
   blogObserver.observe(blogSection);
@@ -271,7 +269,6 @@ if (blogSection) {
 // --- Typing Animation for Hero Section ---
 document.addEventListener("DOMContentLoaded", function () {
   const typedTextSpan = document.getElementById("typed-text");
-  // Anda bisa menambahkan lebih banyak kata/frasa di sini
   const textArray = [
     "Software Developer.",
     "UI/UX Enthusiast.",
@@ -279,9 +276,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "Tech Explorer.",
     "Creative Thinker.",
   ];
-  const typingDelay = 120; // Kecepatan mengetik (ms)
-  const erasingDelay = 70; // Kecepatan menghapus (ms)
-  const newTextDelay = 2000; // Jeda sebelum mengetik teks baru (ms)
+  const typingDelay = 120;
+  const erasingDelay = 70;
+  const newTextDelay = 2000;
   let textArrayIndex = 0;
   let charIndex = 0;
 
@@ -291,7 +288,6 @@ document.addEventListener("DOMContentLoaded", function () {
       charIndex++;
       setTimeout(type, typingDelay);
     } else {
-      // Selesai mengetik satu frasa
       setTimeout(erase, newTextDelay);
     }
   }
@@ -305,22 +301,18 @@ document.addEventListener("DOMContentLoaded", function () {
       charIndex--;
       setTimeout(erase, erasingDelay);
     } else {
-      // Selesai menghapus
       textArrayIndex++;
-      if (textArrayIndex >= textArray.length) textArrayIndex = 0; // Kembali ke awal array
-      setTimeout(type, typingDelay + 500); // Jeda sedikit sebelum mengetik kata baru
+      if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+      setTimeout(type, typingDelay + 500);
     }
   }
 
-  // Mulai animasi jika elemen ada
   if (typedTextSpan) {
-    setTimeout(type, newTextDelay / 2); // Mulai animasi setelah jeda awal
+    setTimeout(type, newTextDelay / 2);
   }
 });
-// Kode ini tidak diperlukan
-$(".hover").mouseleave(function () {
-  $(this).removeClass("hover");
-});
+
+// ✅ PERBAIKAN: Kode jQuery lama yang menyebabkan error '$ is not defined' sudah dihapus seluruhnya dari sini.
 
 
 // Gantilah URL di bawah ini dengan URL domain LifeOS Anda yang sudah dideploy di Vercel
@@ -331,7 +323,6 @@ async function loadDynamicProjects() {
   if (!container) return;
 
   try {
-    // 1. Tampilkan indikator loading sederhana selagi memuat data
     container.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #888;">
         <i class="fas fa-spinner fa-spin" style="font-size: 28px; margin-bottom: 10px; color: #3b82f6;"></i>
@@ -339,31 +330,24 @@ async function loadDynamicProjects() {
       </div>
     `;
 
-    // 2. Ambil data dari API LifeOS
     const response = await fetch(LIFEOS_API_URL);
-    if (!response.ok) throw new Error('Gagal memuat data dari API.');
+    if (!response.ok) throw new Error(`HTTP Error! Status: ${response.status}`);
     
     const projects = await response.json();
 
-    // 3. Jika tidak ada proyek yang di-publish, tampilkan pesan kosong
     if (projects.length === 0) {
       container.innerHTML = `
         <p style="grid-column: 1/-1; text-align: center; color: #666; font-style: italic; padding: 40px;">
-          No projects published yet. Please publish some projects from your LifeOS dashboard.
+          Tidak ada proyek yang berstatus "Published" di database LifeOS Anda.
         </p>
       `;
       return;
     }
 
-    // 4. Render proyek ke dalam struktur HTML asli Anda
     container.innerHTML = projects.map(project => {
-      // Tentukan prioritas tautan (demo_url dahulu, jika tidak ada gunakan github_url)
       const projectLink = project.demo_url || project.github_url || '#';
-      
-      // Gunakan gambar default jika proyek tidak memiliki cover_url
       const coverImage = project.cover_url || 'img/Project/default-cover.png';
 
-      // Render tag teknologi
       const techTags = project.tech_stack && project.tech_stack.length > 0
         ? `<div class="project-tags" style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px;">
             ${project.tech_stack.map(tech => `
@@ -377,12 +361,7 @@ async function loadDynamicProjects() {
       return `
         <div class="gallery-item">
           <a href="${projectLink}" target="_blank" rel="noopener noreferrer">
-            <img
-              src="${coverImage}"
-              alt="${project.title}"
-              onerror="this.src='img/Project/default-cover.png';"
-              style="width: 100%; height: 100%; object-cover: cover;"
-            />
+            <img src="${coverImage}" alt="${project.title}" onerror="this.src='img/Project/default-cover.png';" />
             <div class="gallery-item-overlay">
               <h3>${project.title}</h3>
               <p>${project.description}</p>
@@ -396,12 +375,14 @@ async function loadDynamicProjects() {
   } catch (error) {
     console.error('Error loading projects:', error);
     container.innerHTML = `
-      <p style="grid-column: 1/-1; text-align: center; color: #ef4444; font-size: 14px; padding: 40px;">
-        ⚠️ Gagal mengambil data proyek. Silakan periksa kembali CORS atau koneksi server Anda.
-      </p>
+      <div style="grid-column: 1/-1; text-align: center; color: #ef4444; padding: 40px; background: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.15); border-radius: 20px;">
+        <i class="fas fa-exclamation-triangle" style="font-size: 28px; margin-bottom: 10px;"></i>
+        <p style="font-weight: bold; margin-bottom: 5px;">Gagal Menghubungkan ke LifeOS</p>
+        <p style="font-size: 12px; opacity: 0.8; font-family: monospace;">Detail Error: ${error.message}</p>
+        <p style="font-size: 11px; margin-top: 15px; color: #666;">Baca petunjuk di bawah untuk mengatasinya.</p>
+      </div>
     `;
   }
 }
 
-// Jalankan fungsi load ketika seluruh dokumen HTML selesai dimuat
 document.addEventListener('DOMContentLoaded', loadDynamicProjects);
